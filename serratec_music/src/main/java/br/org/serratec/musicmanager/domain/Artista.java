@@ -1,9 +1,24 @@
 package br.org.serratec.musicmanager.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "artistas")
 public class Artista {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
+	@Column(name = "nome", length = 100, nullable = false)
 	private String nome;
+
+	@Column(name = "tipo_artista", length = 1, nullable = false)
 	private String tipoArtista;
 
 	public Artista(Long id, String nome, String tipoArtista) {
