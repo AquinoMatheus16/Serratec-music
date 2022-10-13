@@ -3,6 +3,8 @@ package br.org.serratec.musicmanager.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.musicmanager.domain.Artista;
+import br.org.serratec.musicmanager.enums.TipoArtistaEnum;
 import br.org.serratec.musicmanager.repository.ArtistaRepository;
 
 @RestController
@@ -23,10 +26,10 @@ public class ArtistaController {
 
 	public ArtistaController(ArtistaRepository artistaRepository) {
 		this.artistaRepository = artistaRepository;
-		artistaRepository.save(new Artista(null, "Michael Jackson", "S"));
-		artistaRepository.save(new Artista(null, "Legião Urbana", "B"));
-		artistaRepository.save(new Artista(null, "Alan Walker", "S"));
-		artistaRepository.save(new Artista(null, "Rammor", "S"));
+		artistaRepository.save(new Artista(null, "Michael Jackson", TipoArtistaEnum.SOLO));
+		artistaRepository.save(new Artista(null, "Legião Urbana", TipoArtistaEnum.BANDA));
+		artistaRepository.save(new Artista(null, "Alan Walker", TipoArtistaEnum.SOLO));
+		artistaRepository.save(new Artista(null, "Rammor", TipoArtistaEnum.SOLO));
 	}
 
 	@GetMapping
@@ -40,12 +43,12 @@ public class ArtistaController {
 	}
 
 	@PostMapping
-	public Artista insere(@RequestBody Artista artista) {
+	public Artista insere(@Valid @RequestBody Artista artista) {
 		return artistaRepository.save(artista);
 	}
 
 	@PutMapping("/{id}")
-	public Artista atualiza(@RequestBody Artista artista, @PathVariable Long id) {
+	public Artista atualiza(@Valid @RequestBody Artista artista, @PathVariable Long id) {
 		Optional<Artista> opArtista = artistaRepository.findById(id);
 		if (opArtista.isEmpty()) {
 			return null;
