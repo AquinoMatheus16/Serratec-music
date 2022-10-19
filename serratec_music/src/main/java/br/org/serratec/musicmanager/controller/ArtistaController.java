@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,22 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.org.serratec.musicmanager.domain.Artista;
-import br.org.serratec.musicmanager.enums.TipoArtistaEnum;
 import br.org.serratec.musicmanager.repository.ArtistaRepository;
 
 @RestController
 @RequestMapping("/artista")
 public class ArtistaController {
 
+	@Autowired
 	private ArtistaRepository artistaRepository;
-
-	public ArtistaController(ArtistaRepository artistaRepository) {
-		this.artistaRepository = artistaRepository;
-		artistaRepository.save(new Artista(null, "Michael Jackson", TipoArtistaEnum.SOLO));
-		artistaRepository.save(new Artista(null, "Legião Urbana", TipoArtistaEnum.BANDA));
-		artistaRepository.save(new Artista(null, "Alan Walker", TipoArtistaEnum.SOLO));
-		artistaRepository.save(new Artista(null, "Rammor", TipoArtistaEnum.SOLO));
-	}
 
 	@GetMapping
 	public List<Artista> listarTodos() {

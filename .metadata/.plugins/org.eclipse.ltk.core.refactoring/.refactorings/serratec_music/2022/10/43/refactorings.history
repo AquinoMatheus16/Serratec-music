@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;AlbumController.java&apos; to &apos;serratec_music/src/main/java/br.org.serratec.musicmanager.controller&apos;&#x0D;&#x0A;- Original project: &apos;serratec_music&apos;&#x0D;&#x0A;- Destination element: &apos;serratec_music/src/main/java/br.org.serratec.musicmanager.controller&apos;&#x0D;&#x0A;- Original element: &apos;br.org.serratec.musicmanager.controller.AlbumController.java&apos;" description="Copy compilation unit" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.org.serratec.musicmanager.controller" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;br.org.serratec.musicmanager.controller{AlbumController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1666204052859" units="1" version="1.0"/>
+</session>

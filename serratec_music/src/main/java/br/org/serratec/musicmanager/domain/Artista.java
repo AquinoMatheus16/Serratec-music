@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -12,19 +13,21 @@ import javax.validation.constraints.Size;
 import br.org.serratec.musicmanager.enums.TipoArtistaEnum;
 
 @Entity
-@Table(name = "artistas")
+@Table(name = "artista")
 public class Artista {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence_artista")
+	@SequenceGenerator(name = "sequence_artista", sequenceName = "seq_artista", allocationSize = 1)
+	@Column(name = "art_cd_id")
 	private Long id;
 
 	@Size(min = 3, max = 100)
-	@Column(name = "nome", length = 100, nullable = false)
+	@Column(name = "art_tx_nome", length = 100, nullable = false)
 	private String nome;
 
 	@NotNull(message = "Tipo de Artista deve ser selecionado")
-	@Column(name = "tipo_artista", length = 1, nullable = false)
+	@Column(name = "art_tx_tipo", length = 1, nullable = false)
 	private TipoArtistaEnum tipoArtista;
 
 	public Artista(Long id, String nome, TipoArtistaEnum tipoArtista) {
@@ -32,6 +35,10 @@ public class Artista {
 		this.id = id;
 		this.nome = nome;
 		this.tipoArtista = tipoArtista;
+	}
+
+	public Artista() {
+		super();
 	}
 
 	public Long getId() {
